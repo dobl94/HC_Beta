@@ -1,6 +1,6 @@
 {
 "companyName": "DefaultCompany",
-"productName": "HCN",
+"productName": "HC",
 "productVersion": "0.1",
 "dataUrl": "HCN_Beta.data.unityweb",
 "wasmCodeUrl": "HCN_Beta.wasm.code.unityweb",
@@ -12,5 +12,5 @@
 "cacheControl": {"default": "must-revalidate"},
 "developmentBuild": false,
 "multithreading": false,
-"unityVersion": "2019.4.13f1"
+"unityVersion": "2019.4.12f1"
 }
