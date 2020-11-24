@@ -95,7 +95,7 @@
 	    }
 	    else if(labelContainer.childNodes[2].innerHTML== "bend: 1.00" ){
 	    	codeB="left";
-		console.log("left pressed);
+		console.log("left pressed");
 	    }
 	    //else if(labelContainer.childNodes[3].innerHTML== "bend: 1.00" ){
 	    //   	codeC="left ctrl";
