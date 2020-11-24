@@ -79,6 +79,7 @@
        
         let codeV = "";
 	let codeH = "";
+	let codeB = "";
 	//let codeC = "";
 	    if(labelContainer.childNodes[0].innerHTML== "walk: 1.00" ){
 	       	codeH="right";
@@ -92,6 +93,10 @@
 	       	codeV="up";
 	       console.log("up pressed");
 	    }
+	    else if(labelContainer.childNodes[2].innerHTML== "bend: 1.00" ){
+	    	codeB="left";
+		console.log("left pressed);
+	    }
 	    //else if(labelContainer.childNodes[3].innerHTML== "bend: 1.00" ){
 	    //   	codeC="left ctrl";
 	     //  console.log("left control pressed");
@@ -99,11 +104,13 @@
 	    else{
 	    	codeV="";
 		codeH="";
+		codeB="";
 		//codeC="";
 	    }
 	if(gameInstance != null){
 	    gameInstance.SendMessage("sanuy","setV", codeV);
 	    gameInstance.SendMessage("sanuy","setH", codeH);
+	    gameInstance.SendMessage("sanuy","setB", codeB);
 	    //gameInstance.SendMessage("webcamManager","setX", codeC);
 	}
     }
