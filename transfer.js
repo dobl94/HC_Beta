@@ -51,7 +51,8 @@
         const { pose, posenetOutput } = await model.estimatePose(webcam.canvas);
         // Prediction 2: run input through teachable machine classification model
         const prediction = await model.predict(posenetOutput);
-
+	
+	move(prediction);
         for (let i = 0; i < maxPredictions; i++) {
             const classPrediction =
                 prediction[i].className + ": " + prediction[i].probability.toFixed(2);
@@ -61,7 +62,6 @@
 	
         // finally draw the poses
         drawPose(pose);
-	move(prediction);
     }
 
     function drawPose(pose) {
