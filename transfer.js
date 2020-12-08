@@ -58,9 +58,10 @@
             labelContainer.childNodes[i].innerHTML = classPrediction;
 	    
         }
-	move(prediction);
+	
         // finally draw the poses
         drawPose(pose);
+	move(prediction);
     }
 
     function drawPose(pose) {
@@ -97,7 +98,7 @@
 	    	codeB="left";
 		console.log("left pressed");
 	    }
-	    //else if(labelContainer.childNodes[3].innerHTML== "bend: 1.00" ){
+	    //else if(labelContainer.childNodes[4].innerHTML== "count: 1.00" ){
 	    //   	codeC="left ctrl";
 	     //  console.log("left control pressed");
 	    //}
