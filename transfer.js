@@ -82,19 +82,19 @@
 	let codeH = "";
 	let codeB = "";
 	//let codeC = "";
-	    if(labelContainer.childNodes[0].innerHTML== "walk: 1.00" ){
+	    if(labelContainer.childNodes[0].innerHTML== "Walk: 1.00" ){
 	       	codeH="right";
 	       console.log("right pressed");
 	    }
-	    else if(labelContainer.childNodes[1].innerHTML== "squat: 1.00" ){
+	    else if(labelContainer.childNodes[1].innerHTML== "Squat: 1.00" ){
 	       	codeV="down";
 	       console.log("down pressed");
 	    }
-	    else if(labelContainer.childNodes[2].innerHTML== "jump: 1.00" ){
+	    else if(labelContainer.childNodes[2].innerHTML== "Jump: 1.00" ){
 	       	codeV="up";
 	       console.log("up pressed");
 	    }
-	    else if(labelContainer.childNodes[3].innerHTML== "bend: 1.00" ){
+	    else if(labelContainer.childNodes[3].innerHTML== "Bend: 1.00" ){
 	    	codeB="left";
 		console.log("left pressed");
 	    }
