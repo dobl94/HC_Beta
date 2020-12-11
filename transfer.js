@@ -58,10 +58,10 @@
             labelContainer.childNodes[i].innerHTML = classPrediction;
 	    
         }
-	
-	move(prediction);
-        // finally draw the poses
+	// finally draw the poses
         drawPose(pose);
+	move(prediction);
+        
     }
 
     function drawPose(pose) {
