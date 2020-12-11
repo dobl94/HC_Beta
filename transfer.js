@@ -51,16 +51,17 @@
         const { pose, posenetOutput } = await model.estimatePose(webcam.canvas);
         // Prediction 2: run input through teachable machine classification model
         const prediction = await model.predict(posenetOutput);
-
+	
         for (let i = 0; i < maxPredictions; i++) {
             const classPrediction =
                 prediction[i].className + ": " + prediction[i].probability.toFixed(2);
             labelContainer.childNodes[i].innerHTML = classPrediction;
 	    
         }
-	move(prediction);
-        // finally draw the poses
+	// finally draw the poses
         drawPose(pose);
+	move(prediction);
+        
     }
 
     function drawPose(pose) {
@@ -79,31 +80,38 @@
        
         let codeV = "";
 	let codeH = "";
+	let codeB = "";
 	//let codeC = "";
-	    if(labelContainer.childNodes[0].innerHTML== "walk: 1.00" ){
+	    if(labelContainer.childNodes[0].innerHTML== "Walk: 1.00" ){
 	       	codeH="right";
 	       console.log("right pressed");
 	    }
-	    else if(labelContainer.childNodes[1].innerHTML== "squat: 1.00" ){
+	    else if(labelContainer.childNodes[1].innerHTML== "Squat: 1.00" ){
 	       	codeV="down";
 	       console.log("down pressed");
 	    }
-	    else if(labelContainer.childNodes[2].innerHTML== "jump: 1.00" ){
+	    else if(labelContainer.childNodes[2].innerHTML== "Jump: 1.00" ){
 	       	codeV="up";
 	       console.log("up pressed");
 	    }
-	    //else if(labelContainer.childNodes[3].innerHTML== "bend: 1.00" ){
+	    else if(labelContainer.childNodes[3].innerHTML== "Bend: 1.00" ){
+	    	codeB="left";
+		console.log("left pressed");
+	    }
+	    //else if(labelContainer.childNodes[4].innerHTML== "count: 1.00" ){
 	    //   	codeC="left ctrl";
 	     //  console.log("left control pressed");
 	    //}
 	    else{
 	    	codeV="";
 		codeH="";
+		codeB="";
 		//codeC="";
 	    }
 	if(gameInstance != null){
 	    gameInstance.SendMessage("sanuy","setV", codeV);
 	    gameInstance.SendMessage("sanuy","setH", codeH);
+	    gameInstance.SendMessage("sanuy","setB", codeB);
 	    //gameInstance.SendMessage("webcamManager","setX", codeC);
 	}
     }
