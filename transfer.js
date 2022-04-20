@@ -44,13 +44,15 @@
         await predict();
         window.requestAnimationFrame(loop);
     }
-
+    var status = "Stand"
+    var count = 10
     async function predict() {
         // Prediction #1: run input through posenet
         // estimatePose can take in an image, video or canvas html element
         const { pose, posenetOutput } = await model.estimatePose(webcam.canvas);
         // Prediction 2: run input through teachable machine classification model
         const prediction = await model.predict(posenetOutput);
+	
 	
         for (let i = 0; i < maxPredictions; i++) {
             const classPrediction =
@@ -60,6 +62,7 @@
         }
 	// finally draw the poses
         drawPose(pose);
+	Count(prediction);
 	move(prediction);
         
     }
@@ -75,13 +78,36 @@
             }
         }
     }
-    
+    function Count(prediction){
+	
+        let codeC = "";
+        if(prediction[4].probability.toFixed(2)==1.00){
+		if(status=="Jump"){
+		count--;
+		codeC=count.toString();
+	    }
+		status = "Stand"
+	}
+	else if(prediction[0].probability.toFixed(2)==1.00){
+	    status = "Walk"
+	}else if(prediction[1].probability.toFixed(2)==1.00){
+	    status = "Squat"
+	}else if(prediction[2].probability.toFixed(2)==1.00){
+ 	    status = "Jump"
+	}else if(prediction[3].probability.toFixed(2)==1.00){
+	    status = "Bend"
+	}
+	if(gameInstance!=null){    
+	    gameInstance.SendMessage("downcounter","setC", codeC);
+	}
+    }
     function move(prediction){
        
         let codeV = "";
 	let codeH = "";
 	let codeB = "";
-	//let codeC = "";
+	let codeC = "";
+	
 	    if(labelContainer.childNodes[0].innerHTML== "Walk: 1.00" ){
 	       	codeH="right";
 	       console.log("right pressed");
@@ -92,26 +118,26 @@
 	    }
 	    else if(labelContainer.childNodes[2].innerHTML== "Jump: 1.00" ){
 	       	codeV="up";
+	        if(count==0){
+		    codeC="finish";
+		}
 	       console.log("up pressed");
 	    }
 	    else if(labelContainer.childNodes[3].innerHTML== "Bend: 1.00" ){
 	    	codeB="left";
 		console.log("left pressed");
 	    }
-	    //else if(labelContainer.childNodes[4].innerHTML== "count: 1.00" ){
-	    //   	codeC="left ctrl";
-	     //  console.log("left control pressed");
-	    //}
 	    else{
 	    	codeV="";
 		codeH="";
 		codeB="";
-		//codeC="";
+		codeC="";
 	    }
 	if(gameInstance != null){
 	    gameInstance.SendMessage("sanuy","setV", codeV);
 	    gameInstance.SendMessage("sanuy","setH", codeH);
 	    gameInstance.SendMessage("sanuy","setB", codeB);
-	    //gameInstance.SendMessage("webcamManager","setX", codeC);
+	
+	    gameInstance.SendMessage("sanuy","setC", codeC);
 	}
     }
